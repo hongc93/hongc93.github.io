@@ -1,0 +1,127 @@
+* {
+    font: normal normal 14px/20px arial, "Microsoft YaHei";
+    /*font: italic bold 14px/20px arial,"Microsoft YaHei";*/
+}
+
+.form-validate {
+    width: 900px;
+    margin: 80px auto 0;
+    border: 1px solid #eee;
+}
+
+.form-validate h1 {
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    margin: 25px 0 15px;
+}
+
+.form-validate .form-item {
+    width: 100%;
+    padding: 8px 0 8px 0;
+    overflow: hidden;
+    _position: relative;
+    display: table;
+}
+
+.form-validate .form-item>p {
+    float: left;
+    width: 240px;
+    margin-left: 100px;
+    text-align: right;
+    padding-right: 15px;
+    line-height: 30px;
+}
+
+.form-validate .form-item em {
+    color: #f00;
+    padding-right: 5px;
+}
+
+.form-validate .form-item input {
+    float: left;
+    width: 240px;
+    padding-left: 10px;
+    line-height: 28px;
+    height: 28px;
+    border: 1px solid #ddd;
+}
+
+.form-validate .form-item span.error {
+    padding-left: 15px;
+    display: table-cell;
+    _position: absolute;
+    _top: 50%;
+    padding-right: 75px;
+    width: 200px;
+    margin-left: 20px;
+    color: #ff0000;
+    font-size: 12px;
+    line-height: 14px;
+    vertical-align: middle;
+    text-align: left;
+}
+.form-item .power{
+    overflow: hidden;
+    width: 100%;
+    margin-left: 355px;
+    padding-top: 10px;
+}
+.form-item .power li{
+    float: left;
+    width: 50px;
+    margin-right:5px;
+}
+.form-item .power li div{
+    width: 100%;
+    height: 5px;
+    background-color: #eeeeee;
+
+}
+.form-item .power li p{
+    font-size: 12px;
+    text-align: center;
+    color: #ddd;
+}
+.form-item .power li.red p{
+    color: red;
+}
+.form-item .power li.yellow p{
+    color: yellow;
+}
+.form-item .power li.green p{
+    color: green;
+}
+.form-item .power li.red div{
+    background-color: red;
+}
+.form-item .power li.yellow div{
+    background-color: yellow;
+}
+.form-item .power li.green div{
+    background-color: green;
+}
+
+
+.form-validate .form-item .form-btn {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-validate .form-item button {
+    border: 1px solid #dddddd;
+    width: 80px;
+    height: 30px;
+    background: #eee;
+    border-radius: 3px;
+}
+
+.form-validate .form-item button.current,
+.form-validate .form-item button:hover {
+    background-color: #00a2d4;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #00a2d4;
+
+}
+

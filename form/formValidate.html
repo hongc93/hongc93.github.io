@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>formValidate</title>
+    <link rel="stylesheet" href="../reset.css">
+    <link rel="stylesheet" href="formValidate.css">
+</head>
+<body>
+<div class="form-validate">
+    <h1>表单验证</h1>
+    <form action="" id="validateForm">
+        <div class="form-item">
+            <p><em>*</em>会员名：</p>
+            <input type="text" class="userName" placeholder="设置会员名" maxlength="25" minlength="5" data-empty
+                   data-error="请输入5-25个字符，一旦设置成功无法修改">
+
+        </div>
+        <div class="form-item">
+            <p><em>*</em>密码：</p>
+            <input type="password" class="password" data-empty placeholder="设置你的登录密码" minlength="6" maxlength="20"
+                   data-error="6~20个字符,只能包含字母、数字以及标点符号（除空格）">
+            <ul class="power" id="powerDegree">
+                <li>
+                    <div></div>
+                    <p>较弱</p>
+                </li>
+                <li>
+                    <div></div>
+                    <p>一般</p>
+                </li>
+                <li>
+                    <div></div>
+                    <p>较强</p>
+                </li>
+            </ul>
+        </div>
+        <div class="form-item">
+            <p><em>*</em>重复密码：</p>
+            <input type="password" class="rePassword" data-empty placeholder="请再次输入你的密码" minlength="6" maxlength="20"
+                   data-error="请再次输入密码">
+        </div>
+        <div class="form-item">
+            <p><em>*</em>邮箱：</p>
+            <input type="text" class="email" placeholder="请输入你的邮箱" data-error="请输入正确的邮箱格式如：xxxxxx@aaa.com">
+        </div>
+        <div class="form-item">
+            <p><em>*</em>手机：</p>
+            <input type="text" class="phone" placeholder="请输入你的手机号码" data-error="请输入正确的手机号码">
+        </div>
+        <div class="form-item">
+            <p><em>*</em>电话：</p>
+            <input type="text" class="tel" placeholder="请输入你的电话号码" data-error="请输入正确的电话号码，格式为0658-7845934">
+
+        </div>
+        <div class="form-item">
+            <p>年龄：</p>
+            <input type="text" class="age" placeholder="请输入你的年龄" data-error="年龄范围18-65">
+        </div>
+        <div class="form-item">
+            <p>传真：</p>
+            <input type="text" class="fax" placeholder="请输入传真号码" data-error="传真格式如：0371-68787027">
+        </div>
+        <div class="form-item">
+            <p><em>*</em>身份证：</p>
+            <input type="text" class="idCard" maxlength="18" placeholder="请输入身份证号" data-error="请输入正确的身份证号码,字母为大写">
+        </div>
+        <div class="form-item">
+            <p><em>*</em>姓名：</p>
+            <input type="text" minlength="2" class="name" placeholder="请输入姓名" data-error="请输入中文姓名，不能含空格">
+        </div>
+        <div class="form-item">
+            <p>QQ：</p>
+            <input type="text"  class="qqNum" placeholder="请输入QQ" data-error="请输入正确的QQ号码">
+        </div>
+        <div class="form-item">
+            <div class="form-btn">
+                <button class="current" type="submit">提交</button>
+                <button type="reset">重置</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<!--<script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>-->
+<script src="../jquery-1.11.3.min.js"></script>
+<script src="formValidate.js"></script>
+<script>
+    $(function () {
+        $("#validateForm").validator();
+    })
+</script>
+</body>
+</html>
