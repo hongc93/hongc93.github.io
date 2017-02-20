@@ -54,11 +54,11 @@
 
         </div>
         <div class="form-item">
-            <p><em>*</em>年龄：</p>
+            <p>年龄：</p>
             <input type="text" class="age" placeholder="请输入你的年龄" data-error="年龄范围18-65">
         </div>
         <div class="form-item">
-            <p><em>*</em>传真：</p>
+            <p>传真：</p>
             <input type="text" class="fax" placeholder="请输入传真号码" data-error="传真格式如：0371-68787027">
         </div>
         <div class="form-item">
@@ -70,7 +70,7 @@
             <input type="text" minlength="2" class="name" placeholder="请输入姓名" data-error="请输入中文姓名，不能含空格">
         </div>
         <div class="form-item">
-            <p><em>*</em>QQ：</p>
+            <p>QQ：</p>
             <input type="text"  class="qqNum" placeholder="请输入QQ" data-error="请输入正确的QQ号码">
         </div>
 		<div class="form-item">
