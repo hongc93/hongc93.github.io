@@ -2,7 +2,7 @@
  * 表单验证插件：
  * 1》input加 data-empty时，为必填项，提交时验证。
  * 2》验证正则可根据自己需求更改
- * 3》
+ * 3》若无需验证，请将class值改为其他或者为空
  * @param options
  * @returns {$}
  */
@@ -21,7 +21,8 @@ $.fn.validator = function (options) {
         idCardReg: /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/,//18位身份证，X为大写
         faxReg: /^(\d{3,4})?[-]?\d{7,8}$/,//如：0311-7548954 或 03117548954
         nameReg: /^[\u4E00-\u9FFF]+$/,//要求中文
-        qqReg:/^[1-9][0-9]{4,9}$/
+        qqReg:/^[1-9][0-9]{4,9}$/,
+        zipCode:/^[1-9][0-9]{5}$///邮编验证
 
     };
     options = $.extend({}, defaults, options);
@@ -91,14 +92,10 @@ $.fn.validator = function (options) {
         if (className.indexOf("qqNum") != -1 && !options.qqReg.test(inputVal)) {
             reg = true;
         }
+        if (className.indexOf("zipCode") != -1 && !options.qqReg.test(inputVal)) {
+            reg = true;
+        }
         return reg;
-    }
-
-    //是否为纯数字
-    function isDigit(s) {
-        var patrn = /^[0-9]{1,20}$/;
-        if (!patrn.exec(s)) return false
-        return true
     }
 
 
