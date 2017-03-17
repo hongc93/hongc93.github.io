@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>模糊效果</title>
-    <link rel="stylesheet" href="../../reset.css">
+    <link rel="stylesheet" href="../reset.css">
     <style>
         section {
             position: relative;
@@ -19,109 +19,47 @@
         .bg {
             width: 100%;
             height: 100%;
-            background: #000 url(3.jpg) no-repeat center center;
-            -webkit-filter: blur(0px); /* Chrome, Opera */
+            background: url("3.jpg") no-repeat;
+            -webkit-filter: blur(0px);
             -moz-filter: blur(0px);
+            -o-filter: blur(0px);
             -ms-filter: blur(0px);
             filter: blur(0px);
-            transition: all .8s;
-            -moz-transition: all .8s; /* Firefox 4 */
-            -webkit-transition: all .8s; /* Safari and Chrome */
-            -o-transition: all .8s; /* Opera */
+            transition: all 2s;
         }
 
         section:hover .bg {
-            -webkit-filter: blur(10px); /* Chrome, Opera */
+            -webkit-filter: blur(10px);
             -moz-filter: blur(10px);
+            -o-filter: blur(10px);
             -ms-filter: blur(10px);
             filter: blur(10px);
-            transition: all .8s;
-            -moz-transition: all .8s; /* Firefox 4 */
-            -webkit-transition: all .8s; /* Safari and Chrome */
-            -o-transition: all .8s; /* Opera */
+            transition: all 2s;
         }
 
-        .con {
+        section .con {
             position: absolute;
-            left: 50%;
             top: 50%;
-            margin-top: -60px;
+            left: 50%;
             margin-left: -175px;
+            margin-top: -75px;
             width: 350px;
-            height: 80px;
-            padding-top: 30px;
-            padding-bottom: 30px;
+            height: 120px;
+            padding-top:30px;
             text-align: center;
-        }
-
-        .con h4 {
-            line-height: 36px;
-            color: transparent;
-            -webkit-text-fill-color: transparent;
-            -webkit-background-clip: text;
-            background-image: -webkit-linear-gradient(left, #00cac3, #d908c3 25%, #0030ca 50%, #d908c3 75%, #00cac3 100%);
-            background-size: 200% 100%;
-            animation: streamer 5s infinite linear;
-            visibility: hidden;
-        }
-
-        @keyframes streamer {
-            0% {
-
-                background-position: 0 0;
-            }
-            100% {
-
-                background-position: -100% 0;
-            }
-        }
-
-        .con p {
-            visibility: hidden;
-        }
-
-        .con p a {
-            color: green;
-            font-weight: bold;
-            animation: color 5s;
-        }
-
-        @keyframes color {
-            0% {
-                color: blue
-            }
-            5% {
-                color: green
-            }
-            10% {
-                color: blue
-            }
-            15% {
-                color: green
-            }
-            20% {
-                color: blue
-            }
-            25% {
-                color: green
-            }
-            100% {
-                color: green
-            }
         }
 
         section .con::before {
             content: '';
             position: absolute;
-            left: 0;
-            top: 50%;
-            width: 100%;
             height: 0;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
             border: 3px solid ghostwhite;
             border-width: 0 3px;
-            overflow: hidden;
-            visibility: hidden;
-            transition: all .8s;
+            transition: all 2s;
             box-sizing: border-box;
         }
 
@@ -132,33 +70,104 @@
             top: 0;
             width: 0;
             height: 100%;
+            overflow: hidden;
             border: 3px solid ghostwhite;
             border-width: 3px 0;
-            overflow: hidden;
-            visibility: hidden;
-            transition: all .8s;
+            transition: all 2s;
             box-sizing: border-box;
-        }
-
-        section:hover .con {
-            opacity: 1
+            transition: all 2s;
         }
 
         section:hover .con::before {
             height: 100%;
-            visibility: visible;
             top: 0;
-        }
-
-        section:hover h4,
-        section:hover p {
-            visibility: visible;
+            left: 0;
         }
 
         section:hover .con::after {
             width: 100%;
-            visibility: visible;
             left: 0;
+            top: 0;
+        }
+
+        section .con h4 {
+            font-size: 24px;
+            line-height: 58px;
+            color: transparent;
+            background-image: -webkit-linear-gradient(left, #3498db, #f47920 10%, #d71345 20%, #f7acbc 30%, #ffd400 40%, #3498db 50%, #f47920 60%, #d71345 70%, #f7acbc 80%, #ffd400 90%, #3498db);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+            -webkit-background-size: 200% 100%;
+            background-size: 200% 100%;
+            -webkit-animation: streamer 3s infinite linear;
+            -o-animation: streamer 3s infinite linear;
+            animation: streamer 3s infinite linear;
+            visibility: hidden;
+        }
+
+
+        @keyframes streamer {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        @-webkit-keyframes streamer {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        section .con p a{
+            visibility: hidden;
+        }
+        section .con p:hover a {
+            border-bottom: 1px solid green;
+        }
+
+        section .con p a {
+            font-size: 18px;
+            line-height: 30px;
+            font-weight: bold;
+            color: green;
+            -webkit-animation: linkColor 3s;
+            -o-animation: linkColor 3s;
+            animation: linkColor 3s;
+        }
+
+        @keyframes linkColor {
+            0% {
+                color: blue;
+            }
+            10% {
+                color: green;
+            }
+            20% {
+                color: blue;
+            }
+            30% {
+                color: green;
+            }
+            40% {
+                color: blue;
+            }
+            50% {
+                color: green;
+            }
+            100% {
+                color: green;
+            }
+        }
+        section:hover h4,
+        section:hover .con p a{
+            visibility: visible;
+            cursor: pointer;
         }
     </style>
 </head>
