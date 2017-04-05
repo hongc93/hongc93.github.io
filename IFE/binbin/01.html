@@ -13,20 +13,21 @@
     (function () {
         // 去掉左边空格
         function trim(str) {
+
             if (str == null) return "";
             str = str.toString();
-
             var whitespace = " ";
             if (whitespace.indexOf(str.charAt(0)) != -1) {
                 var j = 0, i = str.length;
                 while (j < i && whitespace.indexOf(str.charAt(0)) != -1) {
                     j++;
-                    str = str.substring(j, i);                }
-
+                    i = str.length;
+                    str = str.substring(j);
+                    j=0;
+                }
             }
             return str;
         }
-
 
 
         // 获取元素
@@ -37,10 +38,7 @@
         // 点击提交按钮
         oBtn.onclick = function () {
             var val = trim(oInput.value);
-            console.log(val);
-            if (val != "") {
-                oSpan.innerText = val;
-            }
+            oSpan.innerText = val;
         };
 
     })();
