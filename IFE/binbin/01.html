@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Task 01</title>
+</head>
+<body>
+<label>请输入北京今天空气质量：<input id="aqi-input" type="text"></label>
+<button id="button">确认填写</button>
+
+<div>您输入的值是：<span id="aqi-display">尚无录入</span></div>
+<script>
+    (function () {
+        // 去掉左边空格
+        function trim(str) {
+            if (str == null) return "";
+            str = str.toString();
+
+            var whitespace = " ";
+            if (whitespace.indexOf(str.charAt(0)) != -1) {
+                var j = 0, i = str.length;
+                while (j < i && whitespace.indexOf(str.charAt(0)) != -1) {
+                    j++;
+                    str = str.substring(j, i);                }
+
+            }
+            return str;
+        }
+
+
+
+        // 获取元素
+        var oInput = document.getElementById("aqi-input");
+        var oSpan = document.getElementById("aqi-display");
+        var oBtn = document.getElementById("button");
+
+        // 点击提交按钮
+        oBtn.onclick = function () {
+            var val = trim(oInput.value);
+            console.log(val);
+            if (val != "") {
+                oSpan.innerText = val;
+            }
+        };
+
+    })();
+</script>
+</body>
+</html>
