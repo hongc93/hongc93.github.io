@@ -1,0 +1,141 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 04</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei";
+        }
+
+        .wrapper {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .show {
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .show li {
+            float: left;
+            background-color: red;
+            line-height: 30px;
+            height: 30px;
+            padding-left: 6px;
+            padding-right: 6px;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div>
+        <input type="text" id="entry"/>
+        <input type="button" id="leftInsert" value="左侧入"/>
+        <input type="button" id="rightInsert" value="右侧入"/>
+        <input type="button" id="leftDelete" value="左侧出"/>
+        <input type="button" id="rightDelete" value="右侧出"/>
+    </div>
+    <ul class="show" id="show">
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var oInput = document.getElementById("entry");
+    var oLeftInsert = document.getElementById("leftInsert");
+    var oRightInsert = document.getElementById("rightInsert");
+    var oLeftDel = document.getElementById("leftDelete");
+    var oRightDel = document.getElementById("rightDelete");
+    var oShow = document.getElementById("show");
+    var oShowLi = oShow.getElementsByTagName("li");
+
+    /**
+     * 获取第一个元素子节点并返回
+     */
+    function firstEle(ele) {
+        var childNodes = ele.childNodes;
+        for (var i = 0; i < childNodes.length; i++) {
+            if (childNodes[i].nodeType == 1) {
+                return childNodes[i];
+            }
+        }
+    }
+
+    /**
+     * 获取最后一个元素子节点并返回
+     */
+    function lastEle(ele) {
+        var allChild = ele.childNodes;
+        var i = allChild.length - 1;
+        while (i >= 0) {
+            if (allChild[i].nodeType == 1) {
+                return allChild[i];
+            }
+            i--;
+        }
+    }
+
+    /**
+     * 创建li
+     */
+    function createLi() {
+        var inputVal = oInput.value;
+        if (inputVal == "" || isNaN(inputVal)) {
+            oInput.value = "";
+            return
+        }
+        var newLi = document.createElement("li");
+        newLi.innerText = inputVal;
+        return newLi;
+
+    }
+
+    /**
+     * 清空input框
+     */
+    function clearInput() {
+        oInput.value = "";
+    }
+
+    oLeftInsert.onclick = function () {
+        if (createLi() != undefined) {
+            oShow.insertBefore(createLi(), firstEle(oShow));
+            clearInput()
+        }
+
+    };
+    oRightInsert.onclick = function () {
+        if (createLi() == undefined) return;
+        oShow.appendChild(createLi());
+        clearInput();
+    };
+    oLeftDel.onclick = function () {
+        var oFirst = firstEle(oShow);
+        if(oFirst != undefined){
+            oShow.removeChild(oFirst);
+        }
+    };
+    oRightDel.onclick = function () {
+        var oLast = lastEle(oShow);
+        if(oLast!= undefined){
+            oShow.removeChild(lastEle(oShow));
+        }
+    };
+    oShow.addEventListener("click",function (e) {
+        if (e.target.nodeName.toLowerCase() == "li"){
+            oShow.removeChild(event.target);
+        }
+    })
+
+
+</script>
+</body>
+</html>
