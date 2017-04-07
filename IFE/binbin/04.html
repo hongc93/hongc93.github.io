@@ -105,6 +105,17 @@
         oInput.value = "";
     }
 
+    /**
+     * 删除
+     */
+    function delEle(ele) {
+        var eleText = ele.innerText;
+        if(ele!= undefined){
+            oShow.removeChild(ele);
+            alert(eleText);
+        }
+    }
+
     oLeftInsert.onclick = function () {
         if (createLi() != undefined) {
             oShow.insertBefore(createLi(), firstEle(oShow));
@@ -118,16 +129,10 @@
         clearInput();
     };
     oLeftDel.onclick = function () {
-        var oFirst = firstEle(oShow);
-        if(oFirst != undefined){
-            oShow.removeChild(oFirst);
-        }
+        delEle(firstEle(oShow));
     };
     oRightDel.onclick = function () {
-        var oLast = lastEle(oShow);
-        if(oLast!= undefined){
-            oShow.removeChild(lastEle(oShow));
-        }
+        delEle(lastEle(oShow));
     };
     oShow.addEventListener("click",function (e) {
         if (e.target.nodeName.toLowerCase() == "li"){
