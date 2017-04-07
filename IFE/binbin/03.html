@@ -79,10 +79,11 @@
      * 格式见ul中的注释的部分
      */
     function render(data) {
+        data = data.reverse();
         var oResort = document.getElementById("resort");
         var str = "";
         for (var i = 0; i < data.length; i++) {
-            str += "<li>" + data[i][0] + "：<b>" + data[i][1] + "</b>" + "</li>";
+            str += "<li><span>第"+(i+1)+"名：</span>" + data[i][0] + "：<b>" + data[i][1] + "</b>" + "</li>";
             oResort.innerHTML = str;
         }
 
