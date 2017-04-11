@@ -16,7 +16,6 @@
         }
 
         .show {
-            /*overflow: hidden;*/
             margin-top: 10px;
             height: 100px;
             border: 1px solid #eee;
@@ -76,12 +75,17 @@
             oInput.value = "";
             oInput.focus();
             return false;
-        } else if (num == undefined || num == "" || num < 10 || num > 100) {
+        } else if (num == undefined || num == "") {
             oInput.value = "";
             alert("您没有输入，请输入正确的数字");
             oInput.focus();
             return false;
-        } else {
+        } else if(num < 10 || num > 100){
+            oInput.value = "";
+            alert("只能输入10-100的数字");
+            oInput.focus();
+            return false;
+        }else {
             return true;
         }
     }
@@ -116,8 +120,8 @@
      * 创建li
      */
     function createLi() {
-        if (oldLis.length > 5) {
-            alert("超出个数");
+        if (oldLis.length >= 60) {
+            alert("最多输入60个，您已超出最大个数");
             oInput.value = "";
             return;
         }
@@ -125,6 +129,8 @@
             ary.push(oInput.value);
             var newLi = document.createElement("li");
             newLi.style.height = oInput.value;
+            console.log(ary.length);
+            newLi.setAttribute("nIndex",ary.length);
             oInput.value = "";
             return newLi;
         }
@@ -209,10 +215,13 @@
     oShow.addEventListener("click", function (e) {
         if (e.target.nodeName.toLowerCase() == "li") {
             oShow.removeChild(event.target);
-
-
+            var removeIndex = event.target.getAttribute("nIndex");
+            ary.splice(removeIndex-1,1);
         }
-    });  //待修改
+        for (var i = 0; i < ary.length; i++) {
+            oldLis[i].style.left = i*20+"px";
+        }
+    });
 
 
     oSortSB.onclick = function () {
@@ -227,8 +236,6 @@
             oldLis[i].style.height = ary[i];
         }
     }
-
-
 </script>
 </body>
 </html>
