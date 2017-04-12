@@ -1,0 +1,157 @@
+<!DOCTYPE>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 06</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft YaHei";
+        }
+
+        .wrapper {
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .show {
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        .show li {
+            float: left;
+            background-color: red;
+            line-height: 30px;
+            height: 30px;
+            padding-left: 6px;
+            padding-right: 6px;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 8px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div>
+        <textarea name="entry" id="entry2" cols="30" rows="10"></textarea>
+        <input type="button" onclick="addNum(1)" value="左侧入"/>
+        <input type="button" onclick="addNum(2)" value="右侧入"/>
+        <input type="button" id="leftDelete" value="左侧出"/>
+        <input type="button" id="rightDelete" value="右侧出"/>
+    </div>
+    <div>
+        <input type="text" id="search"/><input type="button" value="查询" id="searchBtn"/>
+    </div>
+    <ul class="show" id="show">
+    </ul>
+</div>
+
+
+<script type="text/javascript">
+    var oInput = document.getElementById("entry");
+    var oTextarea = document.getElementById("entry2");
+    var oLeftDel = document.getElementById("leftDelete");
+    var oRightDel = document.getElementById("rightDelete");
+    var oSearch = document.getElementById("search");
+    var oSearchBtn = document.getElementById("searchBtn");
+    var oShow = document.getElementById("show");
+    var ary = [];//存放textarea的值
+
+    function aryAdd(ary,type) {
+        var oTextStr = oTextarea.value;
+        oTextStr = oTextStr.replace(/\ +|[\r\n]/g, ",");//去掉所有空格
+        oTextStr = oTextStr.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\，|\、|\<|\.|\>|\/|\?]/g, ",");//特殊符号替换
+        ary = oTextStr.split(',');
+        return ary;
+    }
+
+
+    oSearchBtn.onclick = function () {
+        var searchCon = oSearch.value;
+        searchCon = searchCon.toLowerCase();
+        var oLis = oShow.getElementsByTagName("li");
+        for(var i = 0;i<oLis.length;i++){
+            var curLi = oLis[i];
+            var curLiTxt = curLi.innerText.toLocaleLowerCase();
+            if(curLiTxt.indexOf(searchCon)!=-1){
+                curLi.style.backgroundColor = "green";
+            }
+        }
+    };
+
+    function addNum(type) {
+        ary = aryAdd(ary);
+        for (var i = 0; i < ary.length; i++) {
+            var newLi = document.createElement("li");
+            newLi.innerText = ary[i];
+            if(type == 1){
+                oShow.insertBefore(newLi, firstEle(oShow));
+            }else{
+                oShow.appendChild(newLi);
+            }
+
+        }
+
+    }
+
+
+    oLeftDel.onclick = function () {
+        delEle(firstEle(oShow));
+    };
+    oRightDel.onclick = function () {
+        delEle(lastEle(oShow));
+    };
+    oShow.addEventListener("click", function (e) {
+        if (e.target.nodeName.toLowerCase() == "li") {
+            oShow.removeChild(e.target);
+            alert(e.target.innerText)
+        }
+    });
+
+
+    /**
+     * 获取第一个元素子节点并返回
+     */
+    function firstEle(ele) {
+        var childNodes = ele.childNodes;
+        for (var i = 0; i < childNodes.length; i++) {
+            if (childNodes[i].nodeType == 1) {
+                return childNodes[i];
+            }
+        }
+    }
+
+    /**
+     * 获取最后一个元素子节点并返回
+     */
+    function lastEle(ele) {
+        var allChild = ele.childNodes;
+        var i = allChild.length - 1;
+        while (i >= 0) {
+            if (allChild[i].nodeType == 1) {
+                return allChild[i];
+            }
+            i--;
+        }
+    }
+
+
+    /**
+     * 删除
+     */
+    function delEle(ele) {
+        var eleText = ele.innerText;
+        if (ele != undefined) {
+            oShow.removeChild(ele);
+            alert(eleText);
+        }
+    }
+
+
+</script>
+</body>
+</html>
