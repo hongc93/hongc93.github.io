@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>053</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .list {
+            display: table-cell;
+            margin: 10px 0 0 0;
+            height: 150px;
+            border: 1px solid #ddd;
+            vertical-align: bottom;
+            font-size: 0;
+        }
+
+        .list li {
+            display: inline-block;
+            vertical-align: bottom;
+            width: 10px;
+            margin-right: 10px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<p>请输入数字：</p><input type="text" id="entry">
+<input type="button" onclick="addNum(1)" value="左侧入"/>
+<input type="button" onclick="addNum(2)" value="右侧入"/>
+<input type="button" onclick="delNum(1)" value="左侧出"/>
+<input type="button" onclick="delNum(2)" value="右侧出"/>
+<input type="button" onclick="clickSort(1)" value="从大到小排序"/>
+<input type="button" onclick="clickSort(2)" value="从小到大排序"/>
+<ul class="list" id="list">
+
+</ul>
+<script>
+    var oInput = document.getElementById("entry");
+    var oList = document.getElementById("list");
+    var lis = oList.getElementsByTagName("li");
+    var inputVal = "";
+    var numAry = [];
+
+    function validate(num) {
+        if (isNaN(num)) {
+            alert("请输入数字");
+            oInput.value = "";
+            oInput.focus();
+            return false;
+        } else if (num == "" || num == "undefined") {
+            alert("输入框为空，请输入数字");
+            oInput.focus();
+            return false;
+        } else if (num >= 100 || num < 10) {
+            alert("请输入10-100的数字");
+            oInput.focus();
+            return false;
+        } else {
+            numAry.push(num);
+            if (numAry.length > 60) {
+                alert("只支持60个，已经超出");
+                return false;
+            }
+            return true;
+        }
+    }
+
+    function createLi() {
+        var newLi = document.createElement("li");
+        newLi.style.height = inputVal + "px";
+        return newLi;
+    }
+
+    function addNum(type) {
+        inputVal = oInput.value;
+        if (validate(inputVal)) {
+            if (type == 1) {
+                oList.insertBefore(createLi(), oList.childNodes[0]);
+            } else {
+                oList.appendChild(createLi());
+            }
+        }
+    }
+
+    /**
+     * 删除元素节点
+     **/
+    function delNum(type) {
+        var firstEle = firstChild(oList);
+        var lastEle = lastChild(oList);
+
+        if (type == 1) {
+            if (firstEle) {
+                var firstEleH = firstEle.style.height;
+                oList.removeChild(firstEle);
+                alert(parseFloat(firstEleH));
+                numAry.shift();
+            }
+        } else if (type != 1) {
+            if (lastEle) {
+                var lastEleH = lastEle.style.height;
+                oList.removeChild(lastEle);
+                alert(parseFloat(lastEleH));
+                numAry.shift();
+            }
+        }
+    }
+
+
+    oList.addEventListener("click",function (e) {
+        if(e.target.nodeName.toLowerCase() == "li"){
+            oList.removeChild(e.target);
+            alert(parseFloat(e.target.style.height))
+        }
+    });
+
+    /**
+     * 排序事件
+     **/
+    function clickSort(type) {
+        console.info(mySort(numAry,type) );
+        if(type==1){
+            mySort(numAry,type);
+            for(var i=0;i<numAry.length;i++){
+                lis[i].style.height = numAry[i]+"px";
+            }
+        }else{
+            mySort(numAry);
+            for(var j=0;j<numAry.length;j++){
+                lis[j].style.height = numAry[j]+"px";
+            }
+        }
+
+    }
+
+    /**
+     * 数组 排序 冒泡
+     **/
+    function mySort(ary,type) {
+        for (var i = 0; i < ary.length; i++) {
+            for (var j = 0; j < ary.length - i - 1; j++) {
+                if(ary[j]>ary[j+1]){
+                    var tmp = ary[j];
+                    ary[j] = ary[j+1];
+                    ary[j+1] = tmp;
+                }
+            }
+        }
+        if(type==1){
+            ary.reverse();
+        }
+        return ary;
+    }
+
+    /**
+     *获取第一个元素节点
+     * @param ele
+     * @returns {*}  元素或undefined
+     */
+    function firstChild(ele) {
+        var allChildNodes = ele.childNodes;
+        for (var i = 0; i < allChildNodes.length; i++) {
+            if (allChildNodes[i].nodeType == 1) {
+                return allChildNodes[i];
+            }
+        }
+        return false;
+    }
+
+    /**
+     *获取最后一个元素节点
+     * @param ele
+     * @returns {*}  元素或undefined
+     */
+    function lastChild(ele) {
+        var allChildNodes = ele.childNodes;
+        var i = allChildNodes.length - 1;
+        while (i > 0) {
+            if (allChildNodes[i].nodeType == 1) {
+                return allChildNodes[i];
+            }
+
+            i--;
+        }
+        return false;
+    }
+</script>
+</body>
+</html>
